@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from "./components/Header";
+import Nav from "./components/Nav";
+import ArticleList from "./components/ArticleList";
+import { useState } from "react";
+
+import { Route, Routes } from "react-router-dom";
+import Topics from "./components/Topics";
+import "./App.css";
 
 function App() {
+  const [loading, setLoading] = useState(true);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header />
+      <Nav />
+      <Routes>
+        <Route path="/topics" element={<Topics />} />
+        <Route
+          path="/"
+          element={<ArticleList loading={loading} setLoading={setLoading} />}
+        />
+      </Routes>
+    </>
   );
 }
 
