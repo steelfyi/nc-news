@@ -9,8 +9,9 @@ import {
   CardMedia,
 } from "@mui/material";
 
-function ArticleCard({ setLoading, loading }) {
+function ArticleCard() {
   const [articleByID, setArticleByID] = useState([]);
+  const [loading, setLoading] = useState(true);
   const { article_id } = useParams();
 
   useEffect(() => {

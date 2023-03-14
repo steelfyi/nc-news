@@ -11,8 +11,9 @@ import {
 } from "@mui/material";
 import { Link } from "react-router-dom";
 
-function ArticleList({ loading, setLoading }) {
+function ArticleList() {
   const [articleList, setArticleList] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setLoading(true);
