@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+
 import { fetchArticleList } from "../api";
 import {
   Card,
@@ -8,6 +9,7 @@ import {
   ListItem,
   ListItemText,
 } from "@mui/material";
+import { Link } from "react-router-dom";
 
 function ArticleList({ loading, setLoading }) {
   const [articleList, setArticleList] = useState([]);
@@ -17,7 +19,6 @@ function ArticleList({ loading, setLoading }) {
     fetchArticleList().then((articleData) => {
       setArticleList(articleData);
       setLoading(false);
-      console.log(articleData);
     });
   }, []);
 
@@ -27,12 +28,14 @@ function ArticleList({ loading, setLoading }) {
 
   return (
     <Card>
-      <CardHeader title="All articles" />
+      <CardHeader title="Articles" />
       <CardContent>
         <List>
           {articleList.map((article) => (
             <ListItem key={article.article_id}>
-              <ListItemText primary={article.title} />
+              <Link to={`/article/${article.article_id}`}>
+                <ListItemText primary={article.title} />
+              </Link>
             </ListItem>
           ))}
         </List>
