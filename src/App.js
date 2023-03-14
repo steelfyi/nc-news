@@ -8,8 +8,6 @@ import "./App.css";
 import ArticleCard from "./components/ArticleCard";
 
 function App() {
-  const [loading, setLoading] = useState(true);
-
   return (
     <>
       <Header />
