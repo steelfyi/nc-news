@@ -6,6 +6,7 @@ import { Route, Routes } from "react-router-dom";
 import Topics from "./components/Topics";
 import "./App.css";
 import ArticleCard from "./components/ArticleCard";
+import CommentList from "./components/CommentList";
 
 function App() {
   return (
@@ -14,14 +15,9 @@ function App() {
       <Nav />
       <Routes>
         <Route path="/topics" element={<Topics />} />
-        <Route
-          path="/"
-          element={<ArticleList loading={loading} setLoading={setLoading} />}
-        />
-        <Route
-          path="/article/:article_id"
-          element={<ArticleCard loading={loading} setLoading={setLoading} />}
-        />
+        <Route path="/" element={<ArticleList />} />
+        <Route path="/article/:article_id" element={<ArticleCard />} />
+        <Route path="/article/:article_id/comments" element={<CommentList />} />
       </Routes>
     </>
   );
