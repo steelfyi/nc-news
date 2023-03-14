@@ -10,3 +10,11 @@ export const fetchArticleList = () => {
     return data;
   });
 };
+
+export const fetchArticleByID = (article_id) => {
+  return ncNewsAPI.get("/articles/" + article_id).then((response) => {
+    console.log(response.data)
+    const data = response.data.article;
+    return data;
+  });
+};
