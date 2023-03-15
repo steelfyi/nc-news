@@ -10,7 +10,9 @@ import {
   CardMedia,
   Fab,
 } from "@mui/material";
+import ArticleVote from "./ArticleVote";
 import CommentRoundedIcon from "@mui/icons-material/CommentRounded";
+
 
 function ArticleCard() {
   const [articleByID, setArticleByID] = useState([]);
@@ -45,11 +47,12 @@ function ArticleCard() {
               {article.created_at} | {article.topic}
             </Typography>
             <Typography variant="body1" paragraph>
-              {article.body}
+              {article.body} 
             </Typography>
             <Typography variant="body2" color="textSecondary">
               By {article.author}
             </Typography>
+            <ArticleVote articlevote={article.votes}/>
           </CardContent>
         </Card>
       ))}
