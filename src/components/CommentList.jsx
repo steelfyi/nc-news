@@ -9,10 +9,12 @@ import {
   CardMedia,
 } from "@mui/material";
 import { PlusOneRounded } from "@mui/icons-material";
+import Loading from "./Loading";
 
 function CommentList() {
   const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(true);
+  
   const { article_id } = useParams();
   console.log(comments);
 
@@ -25,8 +27,9 @@ function CommentList() {
   }, [article_id]);
 
   if (loading) {
-    return <h3>Loading...</h3>;
+    return <Loading />;
   }
+
   return (
     <>
       {comments.map((comment) => (

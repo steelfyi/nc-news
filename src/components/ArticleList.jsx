@@ -9,6 +9,7 @@ import {
   ListItemText,
 } from "@mui/material";
 import { Link } from "react-router-dom";
+import Loading from "./Loading";
 
 function ArticleList() {
   const [articleList, setArticleList] = useState([]);
@@ -23,7 +24,7 @@ function ArticleList() {
   }, []);
 
   if (loading) {
-    return <h3>Loading...</h3>;
+    return <Loading />;
   }
 
   return (

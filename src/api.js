@@ -12,21 +12,20 @@ export const fetchArticleList = () => {
 };
 
 export const fetchArticleByID = (article_id) => {
-
   return newsAPI.get("/articles/" + article_id).then((response) => {
     const data = response.data.article;
     return data;
   });
 };
 
-
 export const patchVote = (articleID, vote) => {
   return newsAPI
     .patch("/articles/" + articleID, { inc_votes: vote })
     .then((response) => {
       const data = response.data.article;
-    })
-  }
+      return data;
+    });
+};
 
 export const fetchComments = (article_id) => {
   return newsAPI
@@ -34,5 +33,17 @@ export const fetchComments = (article_id) => {
     .then((response) => {
       const data = response.data.comments;
       return data;
+    });
+};
+
+export const postComment = (articleID, username, comment) => {
+  return newsAPI
+    .post("/articles/" + articleID + "/comments", {
+      article_id: articleID,
+      username: username,
+      body: comment,
+    })
+    .then((response) => {
+      return response;
     });
 };
