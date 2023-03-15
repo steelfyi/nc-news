@@ -9,23 +9,20 @@ function ArticleVote({ articlevote }) {
   const [error, setError] = useState(null);
   const { article_id } = useParams();
 
-  useEffect(() => {
-    patchVote(article_id, vote)
-      .then((response) => {
-        setVote(response.votes);
-      })
-      .catch((err) => {
-        setError(err);
-      });
-  }, [article_id, vote]);
-
   function IncrementVote() {
     setVote((vote) => vote + 1);
+    patchVote(article_id, articlevote + 1).catch((err) => {
+      setError(err);
+    });
   }
 
   function DecrementVote() {
     setVote((vote) => vote - 1);
+    patchVote(article_id, articlevote - 1).catch((err) => {
+      setError(err);
+    });
   }
+
   if (error) {
     return (
       <Alert variant="filled" severity="warning">
@@ -35,7 +32,8 @@ function ArticleVote({ articlevote }) {
   }
   return (
     <>
-      <Button onClick={IncrementVote}>+{vote}</Button>
+      <Button onClick={IncrementVote}>+1</Button>
+      <p>{vote}</p>
       <Button onClick={DecrementVote}>-1</Button>
     </>
   );
