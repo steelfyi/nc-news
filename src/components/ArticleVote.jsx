@@ -11,14 +11,14 @@ function ArticleVote({ articlevote }) {
 
   function IncrementVote() {
     setVote((vote) => vote + 1);
-    patchVote(article_id, articlevote + 1).catch((err) => {
+    patchVote(article_id, vote + 1).catch((err) => {
       setError(err);
     });
   }
 
   function DecrementVote() {
     setVote((vote) => vote - 1);
-    patchVote(article_id, articlevote - 1).catch((err) => {
+    patchVote(article_id, vote - 1).catch((err) => {
       setError(err);
     });
   }
