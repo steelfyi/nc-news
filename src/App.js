@@ -5,7 +5,6 @@ import { Route, Routes } from "react-router-dom";
 import Topics from "./components/Topics";
 import "./App.css";
 import ArticleCard from "./components/ArticleCard";
-import ArticleVote from "./components/ArticleVote";
 
 function App() {
   return (
@@ -16,7 +15,6 @@ function App() {
         <Route path="/topics" element={<Topics />} />
         <Route path="/" element={<ArticleList />} />
         <Route path="/article/:article_id" element={<ArticleCard />} />
-        <Route path="/article/articlevote" element={<ArticleVote />} />
       </Routes>
     </>
   );

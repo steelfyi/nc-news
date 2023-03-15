@@ -1,18 +1,23 @@
 import { useEffect, useState } from "react";
 import { fetchArticleByID } from "../api";
 import { useParams } from "react-router-dom";
+import CommentList from "./CommentList";
 import {
   Card,
   CardHeader,
   CardContent,
   Typography,
   CardMedia,
+  Fab,
 } from "@mui/material";
 import ArticleVote from "./ArticleVote";
+import CommentRoundedIcon from "@mui/icons-material/CommentRounded";
+
 
 function ArticleCard() {
   const [articleByID, setArticleByID] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [showComments, setShowComments] = useState(false);
   const { article_id } = useParams();
 
   useEffect(() => {
@@ -27,10 +32,14 @@ function ArticleCard() {
     return <h3>Loading...</h3>;
   }
 
+  const handleCommentClick = () => {
+    setShowComments(!showComments);
+  };
+
   return (
     <>
       {articleByID.map((article) => (
-        <Card key={article.article_id}>
+        <Card key={article.article_id} className="article-card">
           <CardHeader title={article.title} />
           <CardMedia image={article.article_img_url} title={article.title} />
           <CardContent>
@@ -47,6 +56,17 @@ function ArticleCard() {
           </CardContent>
         </Card>
       ))}
+      <CommentRoundedIcon
+        className="comment-icon"
+        sx={{
+          fontSize: "2.5rem",
+          color: "#f00",
+          "&:hover": { color: "#c00" },
+          cursor: "pointer",
+        }}
+        onClick={handleCommentClick}
+      />
+      {showComments && <CommentList />}
     </>
   );
 }
