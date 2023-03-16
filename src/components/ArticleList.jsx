@@ -14,8 +14,8 @@ import Loading from "./Loading";
 function ArticleList() {
   const [articleList, setArticleList] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [topic, setTopic] = useState(""); // Manage the topic value here
-  const [sortBy, setSortBy] = useState("created_at"); // Manage the sortBy value here
+  const [topic, setTopic] = useState(""); 
+  const [sortBy, setSortBy] = useState("created_at"); 
 
   useEffect(() => {
     setLoading(true);

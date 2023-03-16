@@ -1,12 +1,15 @@
 import { Grid, Chip } from "@mui/material";
+import { useSearchParams } from "react-router-dom";
+import { fetchTopics } from "../api";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import TopicCard from "./TopicCard";
-import { fetchTopics } from "../api";
 
 function Topics() {
   const [topics, setTopics] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [showTopics, setShowTopics] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
   const [topic, setTopic] = useState(null);
   const { id } = useParams();
 
@@ -21,9 +24,12 @@ function Topics() {
   if (loading) {
     return <h3>Loading...</h3>;
   }
-
-  const handleTopicClick = (slug) => {
-    setTopic(slug);
+  const handleTopicClick = (topic) => {
+    setTopic(topic);
+    const newSearchParams = new URLSearchParams(searchParams);
+    newSearchParams.set("topic", topic);
+    setSearchParams(newSearchParams);
+    setShowTopics(true);
   };
 
   return (
@@ -67,7 +73,7 @@ function Topics() {
           </Grid>
         ))}
       </Grid>
-      {topic && <TopicCard topic={topic} />}
+      {showTopics && <TopicCard topic={topic} />}
     </>
   );
 }
