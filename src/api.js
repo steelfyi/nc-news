@@ -40,7 +40,7 @@ export const postComment = (articleID, username, comment) => {
   return newsAPI
     .post("/articles/" + articleID + "/comments", {
       article_id: articleID,
-      username: username,
+      username: "jessjelly",
       body: comment,
     })
     .then((response) => {

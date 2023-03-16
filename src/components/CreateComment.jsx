@@ -29,7 +29,7 @@ function CreateComment() {
           <FormControl className="username-input">
             <OutlinedInput
               placeholder="Username"
-              value={username}
+              value="jessjelly"
               onChange={(e) => setUsername(e.target.value)}
             />
             <FormHelperText />
