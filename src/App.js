@@ -5,6 +5,7 @@ import { Route, Routes } from "react-router-dom";
 import Topics from "./components/Topics";
 import "./App.css";
 import ArticleCard from "./components/ArticleCard";
+import TopicCard from "./components/TopicCard";
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
         <Route path="/topics" element={<Topics />} />
         <Route path="/" element={<ArticleList />} />
         <Route path="/article/:article_id" element={<ArticleCard />} />
-      
+        <Route path="/topics/:id" element={<TopicCard />} />
       </Routes>
     </>
   );
