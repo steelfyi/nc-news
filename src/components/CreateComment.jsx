@@ -12,14 +12,21 @@ function CreateComment() {
   const { article_id } = useParams();
   const [formVisible, setFormVisible] = useState(true);
   const [successMessage, setSuccessMessage] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(false);
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    postComment(article_id, username, comment);
-    setFormVisible(false);
-    setSuccessMessage(true);
-    setUsername("");
-    setComment("");
+    postComment(article_id, username, comment)
+      .then((response) => {
+        console.log("your response", response);
+        setFormVisible(false);
+        setSuccessMessage(true);
+        setUsername("");
+        setComment("");
+      })
+      .catch((err) => {
+        setErrorMessage(true);
+      });
   };
 
   return (
@@ -51,9 +58,17 @@ function CreateComment() {
           </Button>
         </form>
       )}
-      {successMessage && (
+      {successMessage && !errorMessage && (
         <div>
           <p>Your comment has been posted!</p>
+        </div>
+      )}
+      {errorMessage && !successMessage && (
+        <div>
+          <p>
+            Sorry, there was an error posting your comment. Please try again
+            later.
+          </p>
         </div>
       )}
     </>
