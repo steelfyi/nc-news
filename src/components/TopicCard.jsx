@@ -7,7 +7,6 @@ function TopicCard() {
 
   return (
     <>
-      <Topics />
       <div>
         <h1>{topic.name}</h1>
         <p>{topic.description}</p>

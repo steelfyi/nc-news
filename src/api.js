@@ -47,3 +47,10 @@ export const postComment = (articleID, username, comment) => {
       return response;
     });
 };
+
+export const fetchTopics = () => {
+  return newsAPI.get("/topics").then((response) => {
+    const data = response.data.topics;
+    return data;
+  });
+};
