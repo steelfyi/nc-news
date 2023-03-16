@@ -1,5 +1,5 @@
 import { Button, Typography } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { patchVote } from "../api";
 import { useParams } from "react-router-dom";
 import Alert from "@mui/material/Alert";

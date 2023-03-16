@@ -13,6 +13,7 @@
   align-items: center;
   color: white;
   min-height: 5vh;
+  z-index: 1000;
 }
 
 .App-logo {
@@ -31,6 +32,7 @@
   margin-left: 10vh;
   z-index: 999;
   color: #f8f9f9;
+  z-index: 1000;
 }
 .nav-topics {
   position: fixed;
@@ -40,19 +42,31 @@
   margin-right: 10vh;
   z-index: 999;
   color: #f8f9f9;
+  z-index: 1000;
 }
 .nav a {
   color: white;
   text-decoration: none;
   font-weight: bold;
+  z-index: 1000;
+}
+
+.main-content {
+  margin-bottom: 5vh;
+  position: relative;
+  z-index: 1;
 }
 
 .article-card {
-  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 1;
+}
+
+.article-container {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 .comment-icon {
@@ -63,3 +77,30 @@
   margin-right: 5vh;
   z-index: 2;
 }
+
+.post-comment-icon {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin-bottom: 15vh;
+  margin-right: 5vh;
+  z-index: 2;
+}
+
+.comment-list {
+  position: relative;
+}
+
+.post-comment .username-input {
+  width: 25ch;
+  margin-bottom: 1rem;
+}
+
+.post-comment .comment-input {
+  width: 100%;
+}
+
+.post-comment .submit-button {
+  margin-top: 1rem;
+}
+
