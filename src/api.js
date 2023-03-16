@@ -4,11 +4,24 @@ const newsAPI = axios.create({
   baseURL: "https://ncnews2023.onrender.com/api",
 });
 
-export const fetchArticleList = () => {
-  return newsAPI.get("/articles").then((response) => {
-    const data = response.data.articles;
-    return data;
-  });
+export const fetchArticleList = ({ topic, sortBy = "created_at" } = {}) => {
+  const params = {
+    topic: topic,
+    sort_by: sortBy,
+  };
+
+  if (topic) {
+    params.topic = topic;
+  }
+
+  return newsAPI
+    .get("/articles", {
+      params,
+    })
+    .then((response) => {
+      const data = response.data.articles;
+      return data;
+    });
 };
 
 export const fetchArticleByID = (article_id) => {

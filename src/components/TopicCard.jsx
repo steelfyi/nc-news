@@ -1,18 +1,41 @@
-import { useParams } from "react-router-dom";
-import Topics from "./Topics";
+import { useState, useEffect } from "react";
+import { fetchArticleList } from "../api";
+import {
+  Card,
+  CardHeader,
+  CardContent,
+  List,
+  ListItem,
+  ListItemText,
+} from "@mui/material";
+import { Link } from "react-router-dom";
 
-function TopicCard() {
-  const { id } = useParams();
-  const topic = { id: 1, name: "Topic 1", color: "#f44336" };
+function TopicCard({ topic }) {
+  const [articleList, setArticleList] = useState([]);
+
+  useEffect(() => {
+    if (topic) {
+      fetchArticleList({ topic, sortBy: "created_at" }).then((articles) => {
+        setArticleList(articles);
+      });
+    }
+  }, [topic]);
 
   return (
-    <>
-      <div>
-        <h1>{topic.name}</h1>
-        <p>{topic.description}</p>
-        <img src={topic.image} alt={topic.name} />
-      </div>
-    </>
+    <Card>
+      <CardHeader title={topic} />
+      <CardContent>
+        <List>
+          {articleList.map((article) => (
+            <ListItem key={article.article_id}>
+              <Link to={`/article/${article.article_id}`}>
+                <ListItemText primary={article.title} />
+              </Link>
+            </ListItem>
+          ))}
+        </List>
+      </CardContent>
+    </Card>
   );
 }
 

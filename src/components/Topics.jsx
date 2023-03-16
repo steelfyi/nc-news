@@ -1,24 +1,19 @@
 import { Grid, Chip } from "@mui/material";
-import { Link, useSearchParams } from "react-router-dom";
-import { fetchTopics } from "../api";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import TopicCard from "./TopicCard";
+import { fetchTopics } from "../api";
 
 function Topics() {
   const [topics, setTopics] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [showTopics, setShowTopics] = useState(false);
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [sortBy, setSortBy] = useState("");
+  const [topic, setTopic] = useState(null);
   const { id } = useParams();
-
-  const sortByQuery = searchParams.get("sort_by");
 
   useEffect(() => {
     setLoading(true);
-    fetchTopics().then((topiData) => {
-      setTopics(topiData);
+    fetchTopics().then((topicData) => {
+      setTopics(topicData);
       setLoading(false);
     });
   }, []);
@@ -26,12 +21,9 @@ function Topics() {
   if (loading) {
     return <h3>Loading...</h3>;
   }
-  const handleTopicClick = (event) => {
-    setSortBy(event.target.value);
-    const newSearchParams = new URLSearchParams(searchParams);
-    newSearchParams.set("sort_by", event.target.value);
-    setSearchParams(newSearchParams);
-    setShowTopics(!showTopics);
+
+  const handleTopicClick = (slug) => {
+    setTopic(slug);
   };
 
   return (
@@ -56,8 +48,7 @@ function Topics() {
           >
             <Chip
               label={topic.slug}
-              value={topic.slug}
-              onClick={handleTopicClick}
+              onClick={() => handleTopicClick(topic.slug)}
               style={{
                 backgroundColor: topic.color,
                 borderRadius: "0%",
@@ -76,7 +67,7 @@ function Topics() {
           </Grid>
         ))}
       </Grid>
-      {showTopics && <TopicCard />}
+      {topic && <TopicCard topic={topic} />}
     </>
   );
 }

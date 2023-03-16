@@ -14,19 +14,20 @@ import Loading from "./Loading";
 function ArticleList() {
   const [articleList, setArticleList] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [topic, setTopic] = useState(""); // Manage the topic value here
+  const [sortBy, setSortBy] = useState("created_at"); // Manage the sortBy value here
 
   useEffect(() => {
     setLoading(true);
-    fetchArticleList().then((articleData) => {
+    fetchArticleList({ topic, sortBy }).then((articleData) => {
       setArticleList(articleData);
       setLoading(false);
     });
-  }, []);
+  }, [topic, sortBy]);
 
   if (loading) {
     return <Loading />;
   }
-
   return (
     <Card>
       <CardHeader title="Articles" />
