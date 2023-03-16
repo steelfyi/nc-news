@@ -31,6 +31,7 @@ function CreateComment() {
               placeholder="Username"
               value="jessjelly"
               onChange={(e) => setUsername(e.target.value)}
+              required
             />
             <FormHelperText />
           </FormControl>
@@ -41,6 +42,7 @@ function CreateComment() {
               onChange={(e) => setComment(e.target.value)}
               multiline
               rows={4}
+              required
             />
             <FormHelperText />
           </FormControl>
